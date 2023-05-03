@@ -7,6 +7,7 @@ module.exports = {
 		'plugin:react/recommended',
 		'airbnb',
 		'airbnb-typescript',
+		'plugin:storybook/recommended',
 		'prettier',
 	],
 	overrides: [],
@@ -71,6 +72,25 @@ module.exports = {
 			{
 				namedComponents: ['function-declaration', 'arrow-function'],
 				unnamedComponents: 'arrow-function',
+			},
+		],
+		// Disable extraneous dependencies for tests and specific files.
+		'import/no-extraneous-dependencies': [
+			'error',
+			{
+				devDependencies: [
+					// Repos with a single test file.
+					'test.{ts,tsx}',
+					// Repos with multiple top-level test files.
+					'test-*.{ts,tsx}',
+					// Tests where the extension or filename suffix denotes that it is a test.
+					'**/*{.,_}{test,spec,stories}.{ts,tsx}',
+					// Jest config file.
+					'**/jest.config.ts',
+					// Jest setup file.
+					'**/jest.setup.ts',
+				],
+				optionalDependencies: false,
 			},
 		],
 	},
