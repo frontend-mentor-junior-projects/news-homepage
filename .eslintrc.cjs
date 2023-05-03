@@ -89,6 +89,10 @@ module.exports = {
 					'**/jest.config.ts',
 					// Jest setup file.
 					'**/jest.setup.ts',
+					// Cypress config file.
+					'**/cypress.config.ts',
+					// Vite config file.
+					'vite.config.ts',
 				],
 				optionalDependencies: false,
 			},
