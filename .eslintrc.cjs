@@ -60,9 +60,11 @@ module.exports = {
 		],
 		// Require default props.
 		'react/require-default-props': [
-			'error',
+			'off',
 			{
 				forbidDefaultForRequired: true,
+				// Throwing 'Configuration for rule "react/require-default-props" is invalid' error.c
+				// functions: 'defaultArguments',
 			},
 		],
 		// Allow use of arrow functions.
