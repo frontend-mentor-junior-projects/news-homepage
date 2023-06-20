@@ -1,6 +1,10 @@
 import 'tailwindcss/tailwind.css'
 import type { Preview } from '@storybook/react'
 
+import { withRouter } from 'storybook-addon-react-router-v6'
+
+import CUSTOM_VIEWPORTS from './lib/Viewports'
+
 const preview: Preview = {
 	parameters: {
 		actions: { argTypesRegex: '^on[A-Z].*' },
@@ -16,7 +20,11 @@ const preview: Preview = {
 					? 0
 					: a.id.localeCompare(b.id, undefined, { numeric: true }),
 		},
+		viewport: {
+			viewports: CUSTOM_VIEWPORTS,
+		},
 	},
+	decorators: [withRouter],
 }
 
 export default preview
