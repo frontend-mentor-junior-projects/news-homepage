@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
-
-import utils from '../utils'
+import samples from 'services/News/samples'
 
 import FeaturedArticle from '.'
 
@@ -8,7 +7,7 @@ const meta: Meta<typeof FeaturedArticle> = {
 	title: 'Featured Article',
 	component: FeaturedArticle,
 	args: {
-		article: utils.FEATURED_ARTICLE,
+		article: samples.FEATURED_ARTICLE,
 	},
 	decorators: [
 		(Story) => {

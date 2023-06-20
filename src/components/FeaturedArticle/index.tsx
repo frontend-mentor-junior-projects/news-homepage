@@ -1,5 +1,6 @@
+import { FeaturedArticle as FeaturedArticleType } from 'services/News/types'
+
 import Button from '../Button'
-import { FeaturedArticle as FeaturedArticleType } from '../utils'
 
 type FeaturedArticleTitleProps = {
 	children: string | React.ReactNode
@@ -26,19 +27,18 @@ type FeaturedArticleProps = {
 
 const FeaturedArticle = ({ article }: FeaturedArticleProps) => {
 	return (
-		<div className='sm:col-span-2 sm:mb-16 lg:mb-0'>
-			<img
-				src={article.images.mobile}
-				alt=''
-				className='sm:hidden block mb-8'
-			/>
-			<img
-				src={article.images.desktop}
-				alt=''
-				className='sm:block hidden mb-8 xl:h-[316px] sm:h-[364px]'
-			/>
+		<article className='sm:col-span-2 sm:mb-16 lg:mb-0'>
+			<picture>
+				<source srcSet={article.images.desktop} />
 
-			<div className='sm:grid sm:grid-cols-2 sm:gap-x-12 mb-16 sm:mb-0'>
+				<img
+					src={article.images.mobile}
+					alt=''
+					className='mb-8 xl:h-[316px] sm:h-[364px]'
+				/>
+			</picture>
+
+			<section className='sm:grid sm:grid-cols-2 sm:gap-x-12 mb-16 sm:mb-0'>
 				<FeaturedArticleTitle className='sm:hidden block'>
 					The Bright
 					<br />
@@ -60,10 +60,12 @@ const FeaturedArticle = ({ article }: FeaturedArticleProps) => {
 						{article.snippet}
 					</p>
 
-					<Button>Read More</Button>
+					<Button ariaLabel={`Read more about ${article.title}`}>
+						Read More
+					</Button>
 				</div>
-			</div>
-		</div>
+			</section>
+		</article>
 	)
 }
 
