@@ -1,8 +1,7 @@
 import { expect } from '@storybook/jest'
 import { Meta, StoryObj } from '@storybook/react'
 import { userEvent, within } from '@storybook/testing-library'
-
-import utils from '../utils'
+import CUSTOM_VIEWPORTS from 'lib/Viewports'
 
 import Header from '.'
 
@@ -18,11 +17,6 @@ const meta: Meta<typeof Header> = {
 			)
 		},
 	],
-	parameters: {
-		viewport: {
-			viewports: utils.CUSTOM_VIEWPORTS,
-		},
-	},
 }
 
 export default meta
@@ -43,7 +37,7 @@ export const MobileMenuOpen: Story = {
 	},
 	parameters: {
 		viewport: {
-			defaultViewport: utils.CUSTOM_VIEWPORTS.mobile375.name,
+			defaultViewport: CUSTOM_VIEWPORTS.mobile375.name,
 		},
 	},
 }

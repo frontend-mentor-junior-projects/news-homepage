@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-const NAVIGATION_LINKS = ['Home', 'New', 'Popular', 'Trending', 'Categories']
+import Constants from 'lib/Constants'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -15,18 +16,20 @@ const Header = () => {
 
 	return (
 		<header className='flex flex-row justify-between items-center h-[88px] sm:h-[176px] overflow-x-hidden'>
-			<a href='/#'>
-				<img src='/assets/images/logo.svg' alt='logo' className='h-8 sm:h-12' />
-			</a>
+			<Link to='/'>
+				<img
+					src='/assets/images/logo.svg'
+					alt="New's homepage logo"
+					className='h-8 sm:h-12'
+				/>
+			</Link>
 
 			<nav>
-				<button type='button' onClick={toggleMenu}>
-					<img
-						src='/assets/images/icon-menu.svg'
-						alt='mobile menu'
-						className='block lg:hidden'
-					/>
+				<button type='button' onClick={toggleMenu} className='block lg:hidden'>
+					<img src='/assets/images/icon-menu.svg' alt='Menu' />
 				</button>
+
+				{/* For mobile devices. */}
 				{isMenuOpen && (
 					<div
 						className={`lg:hidden w-full h-full fixed inset-0 ${
@@ -52,15 +55,19 @@ const Header = () => {
 							</button>
 
 							<ul className='flex flex-col space-y-10 mt-[144px]'>
-								{NAVIGATION_LINKS.map((link) => {
+								{Constants.NAVIGATION_LINKS.map((link) => {
 									return (
 										<li
-											key={link}
+											key={link.name}
 											className='text-neutral-400 hover:cursor-pointer hover:text-primary-200'
 										>
-											<a href='/#' onClick={closeMenu}>
-												{link}
-											</a>
+											<Link
+												to='/'
+												aria-label={link.accessibleName}
+												onClick={closeMenu}
+											>
+												{link.name}
+											</Link>
 										</li>
 									)
 								})}
@@ -68,17 +75,23 @@ const Header = () => {
 						</div>
 					</div>
 				)}
+
+				{/* For desktop devices. */}
 				<div className='hidden lg:block'>
 					<ul className='sm:flex sm:flex-row space-x-10'>
-						{NAVIGATION_LINKS.map((link) => {
+						{Constants.NAVIGATION_LINKS.map((link) => {
 							return (
 								<li
-									key={link}
+									key={link.name}
 									className='text-neutral-400 hover:cursor-pointer hover:text-primary-200 transtion duration-300 ease-out'
 								>
-									<a href='/#' data-testid='mobile menu link'>
-										{link}
-									</a>
+									<Link
+										to='/'
+										aria-label={link.accessibleName}
+										data-testid='mobile menu link'
+									>
+										{link.name}
+									</Link>
 								</li>
 							)
 						})}
