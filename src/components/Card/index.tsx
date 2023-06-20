@@ -1,4 +1,5 @@
-import { Article } from '../utils'
+import { Link } from 'react-router-dom'
+import { Article } from 'services/News/types'
 
 type CardProps = {
 	type: 'featured' | 'new'
@@ -13,21 +14,21 @@ const Card = ({ type, article, label = '' }: CardProps) => {
 	if (type === 'featured') {
 		return (
 			<div className='flex flex-row max-w-md'>
-				<img
-					src={article.image}
-					alt='The Growth of Gaming'
-					className='mr-6 h-[128px]'
-				/>
+				<img src={article.image} alt='' className='mr-6 h-[128px]' />
 
 				<div>
-					<p className='text-neutral-300 font-extrabold text-[24px] mb-2'>
+					<span
+						aria-hidden
+						className='text-neutral-300 font-extrabold text-[24px] mb-2'
+					>
 						{label}
-					</p>
-					<p
-						className={`text-neutral-400 font-extrabold hover:text-primary-200 hover:cursor-pointer mb-4 text-[16px] line-clamp-1 ${fadeInAnimation}`}
+					</span>
+					<Link
+						to='/'
+						className={`block text-neutral-400 font-extrabold hover:text-primary-200 hover:cursor-pointer mb-4 text-[16px] line-clamp-1 ${fadeInAnimation}`}
 					>
 						{article.title}
-					</p>
+					</Link>
 					<p className='text-neutral-300 text-body line-clamp-2'>
 						{article.snippet}
 					</p>
@@ -39,11 +40,12 @@ const Card = ({ type, article, label = '' }: CardProps) => {
 	if (type === 'new') {
 		return (
 			<div className='py-8 sm:py-8'>
-				<p
-					className={`text-neutral-100 font-extrabold hover:text-primary-100 hover:cursor-pointer mb-4 text-[16px] ${fadeInAnimation}`}
+				<Link
+					to='/'
+					className={`block text-neutral-100 font-extrabold hover:text-primary-100 hover:cursor-pointer mb-4 text-[16px] ${fadeInAnimation}`}
 				>
 					{article.title}
-				</p>
+				</Link>
 				<p className='text-neutral-200 text-body'>{article.snippet}</p>
 			</div>
 		)
