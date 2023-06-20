@@ -1,7 +1,11 @@
-import { Card, FeaturedArticle, Header } from 'components'
+import { useRef } from 'react'
+
+import { Card, FeaturedArticle, PageLayout } from 'components'
 import NewsService from 'services/News/News.service'
 
 const HomePage = () => {
+	const mainRef = useRef<HTMLElement>(null)
+
 	// Get featured article.
 	const featuredArticle = NewsService.useFeaturedArticle()
 
@@ -12,10 +16,8 @@ const HomePage = () => {
 	const newArticles = NewsService.useNewArticles()
 
 	return (
-		<div className='xl:w-[1104px] xl:mx-auto sm:mx-8 mx-4 bg-neutral-100'>
-			<Header />
-
-			<main>
+		<PageLayout mainRef={mainRef}>
+			<main ref={mainRef} id='main'>
 				<div className='lg:grid lg:grid-cols-3 lg:gap-x-6 sm:mb-[72px] mb-16'>
 					<FeaturedArticle article={featuredArticle} />
 
@@ -62,7 +64,7 @@ const HomePage = () => {
 					</ul>
 				</section>
 			</main>
-		</div>
+		</PageLayout>
 	)
 }
 
